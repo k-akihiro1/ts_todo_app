@@ -16,8 +16,9 @@ module.exports = {
         extensions: ['.ts', '.js'] // Reactの.tsxや.jsxの拡張子も扱いたい場合は配列内に追加する
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'), // webpack-dev-serverの公開フォルダ
-        open: true // サーバー起動時にブラウザを開く
+      static: {
+        directory: path.join(__dirname, "dist"),
+      },
     },
     // モジュールに適用するルールの設定（ローダーの設定を行う事が多い）
     module: {
