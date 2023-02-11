@@ -16,7 +16,7 @@ module.exports = {
         extensions: ['.ts', '.js'] // Reactの.tsxや.jsxの拡張子も扱いたい場合は配列内に追加する
     },
     devServer: {
-      static: {
+			static: {
         directory: path.join(__dirname, "dist"),
       },
     },
