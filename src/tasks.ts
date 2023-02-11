@@ -23,12 +23,19 @@ export class Tasks {
 
     // trタグを作成
     const tr = document.createElement("tr")
+    // タスクごとのidを作成
+    const taskId = `task-${this.taskNumber}`
+    // trタグにid="(taskId)"をセット
+    tr.setAttribute("id", taskId)
+    // 完了ボタン用のidを作成
+    const deleteId = `delete-${this.taskNumber}`
+
     // tdタグの中身を作成
     const td = `
       <td>${this.taskNumber}</td>
       <td>${name}</td>
       <td>${detail}</td>
-      <td><button>完了</button></td>
+      <td><button id="${deleteId}">完了</button></td>
     `
 
     // 作成したtrタグにtdタグを設定
@@ -37,6 +44,16 @@ export class Tasks {
     this.taskList.appendChild(tr)
     // タスク番号をインクリメント(加算)
     this.taskNumber++
-
+    // 作成したボタンを取得
+    const deleteButton = document.getElementById(deleteId)
+     // deleteButtonが存在しない場合は処理終了
+    if (!deleteButton) return
+     // deleteButtonがクリックされた時の処理を追加
+    deleteButton.onclick = function () {
+      // 確認用アラートが出てきて「はい」を選択した時に
+      if (window.confirm("本当に完了したんですか？削除しますよ"))
+        // taskIdを元に要素を特定して削除
+        document.getElementById(taskId)?.remove()
+    }
   }
 }
